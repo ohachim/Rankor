@@ -1,1 +1,3 @@
 # Rankor
+
+![Oracle](Oracle.webp)
