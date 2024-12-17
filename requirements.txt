@@ -1,4 +1,6 @@
+pip
 django
 python-dotenv
 discord-py
 aiohttp
+nextcord
