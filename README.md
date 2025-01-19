@@ -10,73 +10,73 @@ Currently in active development, focusing on establishing core functionality and
 
 **Development Environment Setup**
 
-- [] Create settings_dev.py for local development
-- [] Set up environment variables management
-- [] Document local development setup process
+- [ ] Create settings_dev.py for local development
+- [ ] Set up environment variables management
+- [ ] Document local development setup process
 
 
 **Core Testing Infrastructure**
 
-- [] Implement basic unit tests for core services
-- [] Add integration tests for Riot API interaction
-- [] Set up mock implementations for Riot API testing
+- [ ] Implement basic unit tests for core services
+- [ ] Add integration tests for Riot API interaction
+- [ ] Set up mock implementations for Riot API testing
 
 
 **Basic CI Pipeline**
 
-- [] Add GitHub Actions for automated testing
-- [] Implement mypy type checking
-- [] Configure ruff for linting
-- [] Add test coverage reporting
+- [ ] Add GitHub Actions for automated testing
+- [ ] Implement mypy type checking
+- [ ] Configure ruff for linting
+- [ ] Add test coverage reporting
 
 
 **Region System Rework**
 
-- [] Restructure Region model and handling
-- [] Implement proper region validation
-- [] Add region conversion utilities
+- [ ] Restructure Region model and handling
+- [ ] Implement proper region validation
+- [ ] Add region conversion utilities
 
 
 **Account Data Integrity**
 
-- [] Add basic validation for account registration
-- [] Implement duplicate account detection
-- [] Add account ownership verification
+- [ ] Add basic validation for account registration
+- [ ] Implement duplicate account detection
+- [ ] Add account ownership verification
 
 
 **Update System Implementation**
 
-- [] Create background task system for rank updates
-- [] Implement update queuing
-- [] Add caching for recent update results
+- [ ] Create background task system for rank updates
+- [ ] Implement update queuing
+- [ ] Add caching for recent update results
 
 
 **Docker Development Environment**
 
-- [] Create Dockerfile for development
-- [] Set up Docker Compose for local services
-- [] Add container health checks
+- [ ] Create Dockerfile for development
+- [ ] Set up Docker Compose for local services
+- [ ] Add container health checks
 
 
 **Basic Documentation**
 
-- [] Write API documentation
-- [] Create development setup guide
-- [] Document deployment process
+- [ ] Write API documentation
+- [ ] Create development setup guide
+- [ ] Document deployment process
 
 
 **Frontend Foundation**
 
-- [] Set up separate frontend repository
-- [] Create basic component structure
-- [] Implement API integration layer
+- [ ] Set up separate frontend repository
+- [ ] Create basic component structure
+- [ ] Implement API integration layer
 
 
 **Error Handling Enhancement**
 
-- [] Implement comprehensive error logging
-- [] Add retry mechanisms for API calls
-- [] Create user-friendly error messages
+- [ ] Implement comprehensive error logging
+- [ ] Add retry mechanisms for API calls
+- [ ] Create user-friendly error messages
 
 
 
