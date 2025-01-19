@@ -6,6 +6,8 @@ class SummonerProfile(models.Model):
 
     discord_id = models.CharField(max_length=20, unique=True, db_index=True)
     summoner_name = models.CharField(max_length=100, db_index=True)
+    tagline = models.CharField(max_length=100, null=True)
+    summoner_id = models.CharField(max_length=100, null=True)
     puuid = models.CharField(max_length=100, db_index=True)
 
     REGIONS = [
@@ -15,6 +17,8 @@ class SummonerProfile(models.Model):
         # (TODO: add other regions)
     ]
 
+    flex_league_id = models.CharField(max_length=200, null=True)
+    solo_league_id = models.CharField(max_length=100, null=True)
     server_region = models.CharField(max_length=5, choices=REGIONS, default="EUW1")
 
     RANKS = [
@@ -62,7 +66,10 @@ class SummonerProfile(models.Model):
         choices=RANKS,
         default="UNRANKED",
     )
-
+    solo_wins = models.IntegerField(default=0)
+    solo_losses = models.IntegerField(default=0)
+    flex_wins = models.IntegerField(default=0)
+    flex_losses = models.IntegerField(default=0)
     current_flex_division = models.CharField(
         max_length=20,
         choices=DIVISIONS,

@@ -16,10 +16,16 @@ import os
 
 load_dotenv()
 
+import environ
 
-RIOT_API_KEY = os.getenv("RIOT_API_KEY")
+# Initialise environment variables
+env = environ.Env()
+environ.Env.read_env()
+RIOT_API_KEY = env("RIOT_API_KEY")  # os.getenv("RIOT_API_KEY")
+print(f"Loading settings... RIOT_API_KEY = {RIOT_API_KEY}")
+
 DISCORD_BOT_TOKEN = os.getenv("DISCORD_BOT_TOKEN")
-DEVELOPMENT_GUILD_ID = os.getenv("DEVELOPMENT_GUILD_ID", None)
+DISCORD_GUILD_ID = os.getenv("DEVELOPMENT_GUILD_ID", None)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -47,7 +53,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "player_tracker",
-    "oracle_bot",
+    "oracle",
 ]
 
 MIDDLEWARE = [

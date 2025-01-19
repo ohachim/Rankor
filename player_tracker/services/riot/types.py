@@ -4,32 +4,41 @@ import dataclasses
 
 
 @dataclasses.dataclass
+class RiotAccountDTO:
+    """Represents account data from Riot Account-V1 API."""
+
+    puuid: str
+    gameName: str
+    tagLine: str
+
+
+@dataclasses.dataclass
 class SummonerDTO:
     """Represent a summoner from the Riot API."""
 
-    encrypted_summoner_id: str
-    account_id: str
+    id: str  # encrypted summoner id
+    accountId: str
     puuid: str
-    name: str
-    profile_icon_id: int
-    revision_data: int
-    summoner_level: int
+    profileIconId: int
+    revisionDate: int
+    summonerLevel: int
+    name: str | None = None
+    tagline: str | None = None
 
 
 @dataclasses.dataclass
 class LeagueEntryDTO:
-    """Represents a league entry, encapsulating rankned data from Rior API."""
+    """Represents a league entry from Riot API."""
 
-    league_id: str
-    summonner_id: str
-    summoner_name: str
-    queue_type: str
-    rank: str
-    division: str
-    league_points: int
+    leagueId: str
+    queueType: str
+    tier: str
+    rank: str  # I, II, III, IV
+    summonerId: str
+    leaguePoints: int
     wins: int
-    loses: int
-    hot_streak: int
+    losses: int
     veteran: bool
-    fresh_blood: bool
     inactive: bool
+    freshBlood: bool
+    hotStreak: bool
