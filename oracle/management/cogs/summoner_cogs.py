@@ -33,15 +33,11 @@ class SummonerProfileCog(commands.Cog):
         try:
             account_parts = account_identification.split("#")
             if len(account_parts) < 2:
-                print("Wrong account format")
-                ctx.send(
-                    "Wrong account format. Please include the name and "
-                    "the tagline.\nExample: summoner_name#tagline"
-                )
+                await ctx.send("Wrong account format\nExample: summoner_name#tagline")
                 return
 
-            account_name = account_parts[0]
-            account_tagline = account_parts[1]
+            account_name = account_parts[0].strip()
+            account_tagline = account_parts[1].strip()
             await self._summoner_service.update_summoner_profile(
                 discord_id=str(ctx.author.id),
                 name=account_name,
@@ -63,19 +59,42 @@ class SummonerProfileCog(commands.Cog):
                 "Please try again later."
             )
 
-    @commands.command(name="rank")
-    async def get_rank(self, ctx: commands.Context) -> None:
-        """Check your current rank."""
+    @commands.command(
+        name="rank",
+    )
+    async def get_rank(
+        self, ctx: commands.Context, account_identification: str | None = None
+    ) -> None:
+        """Check your current rank or another player's rank.
+
+        Args:
+            ctx: Command context
+            account_identification: Optional summoner name with tag (e.g. name#tag)
+        """
         try:
-            # First get existing profile
-            profile = await sync_to_async(SummonerProfile.objects.get)(
-                discord_id=str(ctx.author.id)
-            )
+            if account_identification is not None:
+                account_parts = account_identification.split("#")
+                name, tagline = account_parts[0].strip(), account_parts[1].strip()
+                try:
+                    # Check if already registered
+                    profile = await sync_to_async(SummonerProfile.objects.get)(
+                        summoner_name=name, tagline=tagline
+                    )
+                except SummonerProfile.DoesNotExist:
+                    # Register if not found
+                    await self.register(ctx, account_identification)
+                    profile = await sync_to_async(SummonerProfile.objects.get)(
+                        summoner_name=name, tagline=tagline
+                    )
+            else:
+                profile = await sync_to_async(SummonerProfile.objects.get)(
+                    discord_id=ctx.author.id
+                )
             routing_value = profile.server_region[1:-1].split(",")[0][1:-1]
             platform_value = profile.server_region[1:-1].split(",")[1][2:-1]
             try:
                 profile = await self._summoner_service.update_summoner_profile(
-                    discord_id=str(ctx.author.id),
+                    discord_id=profile.discord_id,
                     name=profile.summoner_name,
                     tagline=profile.tagline,
                     region=Region(routing_value, platform_value),

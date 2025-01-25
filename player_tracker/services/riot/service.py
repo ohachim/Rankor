@@ -12,7 +12,7 @@ from .exceptions import (
     ServiceUnavailableError,
     SummonerNotFoundError,
 )
-from .types import LeagueEntryDTO, SummonerDTO, RiotAccountDTO
+from .types import LeagueEntryDTO, RiotAccountDTO, SummonerDTO
 
 
 class RiotAPIService:

@@ -7,8 +7,8 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 from nextcord.ext import commands
 
-from player_tracker.services.riot.service import RiotAPIService
 from oracle.management.cogs import summoner_cogs
+from player_tracker.services.riot.service import RiotAPIService
 from player_tracker.services.summoner.service import SummonerService
 
 logger = logging.getLogger("nextcord")

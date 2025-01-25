@@ -1,12 +1,12 @@
 """Facade for interactions between django models and Riot API service."""
 
-from django.db import transaction
+
+from asgiref.sync import sync_to_async
 
 from ...models import SummonerProfile
 from ..riot.constants import QueueType, Region
 from ..riot.service import RiotAPIService
-from ..riot.types import LeagueEntryDTO, SummonerDTO, RiotAccountDTO
-from asgiref.sync import sync_to_async
+from ..riot.types import LeagueEntryDTO, RiotAccountDTO, SummonerDTO
 
 
 class SummonerService:
@@ -49,7 +49,6 @@ class SummonerService:
         league_entries: list[LeagueEntryDTO] = await self._riot_api.get_league_entries(
             encrypted_summoner_id=summoner_dto.id,
         )
-        print(league_entries)
         profile, _ = await sync_to_async(SummonerProfile.objects.get_or_create)(
             discord_id=discord_id,
             defaults={
@@ -82,7 +81,7 @@ class SummonerService:
                 if entry.queueType == QueueType.RANKED_SOLO.value:
                     profile.solo_league_id = entry.leagueId
                     profile.current_solo_division = entry.rank
-                    profile.current_solo_lp = entry.leag
+                    profile.current_solo_lp = entry.leaguePoints
                     profile.current_solo_rank = entry.tier
                     profile.solo_wins = entry.wins
                     profile.solo_losses = entry.losses
